@@ -29,6 +29,7 @@
     display: flex;
     gap:20px;
     justify-content: center;
+    font-weight: bold;
 }
 @media (max-width: 600px) {
     .cards{
@@ -50,6 +51,7 @@
     }
     .container__icons{
         font-size: 25px;
+        
     }
 }
 
@@ -64,10 +66,9 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
+
     }
     .icon{
-        height: 25px;
     }
     .line{
         height: 4px;
