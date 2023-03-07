@@ -3,6 +3,7 @@ import Loader from './components/Loader/Loader';
 import Message from './components/Message/Message';
 import ButtonMode from './components/ButtonMode/ButtonMode';
 import Cards from './components/Card/Cards';
+import ButtonGrade from './components/ButtonGrade/ButtonGrade';
 // import backgrounds from ''
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <ButtonMode />
       <h1>City, Country</h1>
       <Cards />
+      <ButtonGrade />
     {/* <Loader /> */}
     {/* <Message /> */}
     </div>
