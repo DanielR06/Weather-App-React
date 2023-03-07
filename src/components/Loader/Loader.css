@@ -1,0 +1,46 @@
+.progres_bar{
+    height: 20px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+}
+.progres{
+    display: block;
+    width: 50%;
+    height: 100%;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    background-color: white;
+    animation: load 1s infinite linear;
+    -webkit-animation: load 1s infinite linear;
+}
+@keyframes load{
+    0% {width: 0%;}
+    100%{width: 100%;}
+}
+@media (max-width: 600px) {
+    .cloud{
+        width: 100px;
+    }
+    .progres_bar{
+    margin: 0 auto;
+    height: 20px;
+    width: 80%;
+    }
+}
+
+@media (min-width: 601px) {
+    .cloud{
+        width: 150px;
+    }
+    .progres_bar{
+    margin: 0 auto;
+    height: 20px;
+    width: 30%;
+}
+}

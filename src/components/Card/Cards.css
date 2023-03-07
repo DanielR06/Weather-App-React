@@ -1,0 +1,79 @@
+.cards{
+    display: flex;
+    gap:30px;
+}
+.principal__card{
+    padding: 20px;
+    text-align: center;
+    background: rgba(224, 224, 224, 0.5);
+    mix-blend-mode: normal;
+    border-radius: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sub__card{
+    display: flex;
+    gap: 40px;
+}
+.temperatures__card{
+    background: rgba(224, 224, 224, 0.5);
+    display: flex;
+    padding: 20px;
+    border-radius: 38px;
+}
+.line{
+    background-color: rgba(0, 0, 0, 0.23);
+}
+.container__icons{
+    display: flex;
+    gap:20px;
+    justify-content: center;
+}
+@media (max-width: 600px) {
+    .cards{
+        flex-direction: column;
+    }
+    .principal__card{
+        width: 350px;
+        height: auto;
+    }
+    .temperatures__card{
+        width: 350px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .line{
+        height: 100%;
+        width: 4px;
+    }
+    .container__icons{
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 601px) {
+    .principal__card{
+        width: 450px;
+        height: auto;
+    }
+    .temperatures__card{
+        width: 150px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+    .icon{
+        height: 25px;
+    }
+    .line{
+        height: 4px;
+        width: 100%;
+    }
+    .container__icons{
+        font-size: 30px;
+    }
+}

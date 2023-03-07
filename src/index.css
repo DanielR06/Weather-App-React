@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body { 
+  color:#000;
+}
+@media (max-width: 600px) {
+    h1{
+        font-size:24px;
+    }
+    h2{
+        font-size:99px;
+    }
+    h3{
+        font-size:22px;
+    }
+}
+
+@media (min-width: 601px) {
+    h1{
+        font-size:32px;
+    }
+    h2{
+        font-size:125px;
+    }
+    h3{
+        font-size:22px;
+    }
+}
+
+
