@@ -1,14 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from './components/Loader/Loader';
 import Message from './components/Message/Message';
 import ButtonMode from './components/ButtonMode/ButtonMode';
-import Cards from './components/Card/Cards';
+import Cards from './components/Cards/Cards';
 import ButtonGrade from './components/ButtonGrade/ButtonGrade';
-// import backgrounds from ''
+import backgrounds from './assets/backgrounds.json'
+import axios from 'axios'; 
 const App = () => {
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d`
+  
+  const getWeather = async () => {
+    try {
+      const res = await axios.get(url);
+
+      console.log(res.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() =>{
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+        },
+        (error) => {
+          console.log(error.message);
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+
+    
+    getWeather();
+    
+  }, []);
   return (
+    
     <div className="flex flex-col justify-center items-center bg-zinc-800 w-full h-full gap-2" style={{
-    backgroundImage: `url('https://cdn.pixabay.com/photo/2012/12/27/19/40/snow-72741_1280.jpg')`,
+    backgroundImage: `url(${backgrounds.clearSky})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition:"center"
