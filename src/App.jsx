@@ -10,21 +10,7 @@ const App = () => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d`
-  
-  const getWeather = async () => {
-    try {
-      const res = await axios.get(url);
-
-      console.log(res.data);
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() =>{
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -38,11 +24,26 @@ const App = () => {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-
-    
-    getWeather();
-
   }, []);
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d`;
+  
+  const getWeather = async () => {
+    try {
+      const res = await axios.get(url);
+
+      console.log(res.data);
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() =>{
+    if (latitude && longitude) {
+      getWeather();
+    }
+  }, [latitude, longitude]);
   return (
     
     <div className="flex flex-col justify-center items-center bg-zinc-800 w-full h-full gap-2" style={{
