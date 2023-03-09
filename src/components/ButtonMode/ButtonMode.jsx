@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './ButtonMode.css'
-import { useEffect, useState } from 'react'
 const ButtonMode = () => {
   const [active, setActive] = useState(false);
 

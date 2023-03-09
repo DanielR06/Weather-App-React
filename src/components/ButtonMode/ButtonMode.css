@@ -21,7 +21,6 @@
   
   .toggle-button.active {
     background-color: gray;
-    outline: none;
   }
   .toggle-button:focus {
     outline: none;

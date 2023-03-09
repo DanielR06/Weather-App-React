@@ -10,6 +10,17 @@ const App = () => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
+  const [unit, setUnit] = useState('C');
+  const [grade, setGrade] = useState('metric')
+  function toggleGrade() {
+    setGrade(prevGrade => (prevGrade === 'metric' ? 'imperial' : 'metric'));
+    getWeather();
+   
+  };
+  function toggleUnit() {
+    setUnit(prevUnit => (prevUnit === 'C' ? 'F' : 'C'));
+  };
+
   useEffect(() =>{
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -25,8 +36,8 @@ const App = () => {
       console.log("Geolocation is not supported by this browser.");
     }
   }, []);
-
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d&units=metric`;
+  
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d&units=${grade}`;
   
   const getWeather = async () => {
     try {
@@ -42,7 +53,7 @@ const App = () => {
     if (latitude && longitude) {
       getWeather();
     }
-  }, [latitude, longitude]);
+  }, [latitude, longitude, grade]);
   const description = weatherData?.weather?.[0]?.description;
   const icon = weatherData?.weather?.[0]?.icon;
   const temperature = weatherData?.main?.temp;
@@ -61,12 +72,12 @@ const App = () => {
       <h1>{weatherData?.sys.country}, {weatherData?.name}</h1>
       {weatherData ? (
         
-      <Cards description={description} icon={icon} temperature={temperature} pressure={pressure} wind={wind} rain={rain}/>
+      <Cards description={description} icon={icon} temperature={temperature} unit={unit} pressure={pressure} wind={wind} rain={rain}/>
     ) : (
       <Loader />
     )}
+      <ButtonGrade  toggleUnit={toggleUnit} toggleGrade={toggleGrade}/>
       
-      <ButtonGrade />
     {/* <Message /> */}
     </div>
   );
