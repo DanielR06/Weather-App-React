@@ -8,7 +8,7 @@ const ButtonGrade = (props) => {
   };
   
   return (
-   <button className='button' onClick={() => {props.toggleUnit(); props.toggleGrade();toggleUnit2();}}>Cambiar a °{unit}</button>
+   <button className='button' onClick={() => {props.toggleUnit(); toggleUnit2();}}>Cambiar a °{unit}</button>
   )
 }
 

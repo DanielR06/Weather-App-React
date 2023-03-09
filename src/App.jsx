@@ -12,13 +12,20 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [unit, setUnit] = useState('C');
   const [grade, setGrade] = useState('metric')
-  function toggleGrade() {
-    setGrade(prevGrade => (prevGrade === 'metric' ? 'imperial' : 'metric'));
-    getWeather();
-   
-  };
+
+  // function toggleGrade() {
+  //   setGrade(prevGrade => (prevGrade === 'metric' ? 'imperial' : 'metric'));
+  //   getWeather();
+  //   };
+
   function toggleUnit() {
-    setUnit(prevUnit => (prevUnit === 'C' ? 'F' : 'C'));
+    if (unit === 'C') {
+      setUnit('F');
+      setGrade('imperial');
+    } else {
+      setUnit('C');
+      setGrade('metric');
+    }
   };
 
   useEffect(() =>{
@@ -76,7 +83,7 @@ const App = () => {
     ) : (
       <Loader />
     )}
-      <ButtonGrade  toggleUnit={toggleUnit} toggleGrade={toggleGrade}/>
+      <ButtonGrade  toggleUnit={toggleUnit}/>
       
     {/* <Message /> */}
     </div>
