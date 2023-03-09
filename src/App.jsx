@@ -9,7 +9,7 @@ import axios from 'axios';
 const App = () => {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-
+  const [weatherData, setWeatherData] = useState(null);
   useEffect(() =>{
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -26,14 +26,13 @@ const App = () => {
     }
   }, []);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d&units=metric`;
   
   const getWeather = async () => {
     try {
       const res = await axios.get(url);
-
+      setWeatherData(res.data);
       console.log(res.data);
-
     } catch (error) {
       console.log(error.message);
     }
@@ -44,6 +43,12 @@ const App = () => {
       getWeather();
     }
   }, [latitude, longitude]);
+  const description = weatherData?.weather?.[0]?.description;
+  const icon = weatherData?.weather?.[0]?.icon;
+  const temperature = weatherData?.main?.temp;
+  const pressure = weatherData?.pressure;
+  const wind = weatherData?.wind.deg;
+  const rain = weatherData?.rain; 
   return (
     
     <div className="flex flex-col justify-center items-center bg-zinc-800 w-full h-full gap-2" style={{
@@ -53,10 +58,15 @@ const App = () => {
     backgroundPosition:"center"
     }}>
       <ButtonMode />
-      <h1>City, Country</h1>
-      <Cards />
+      <h1>{weatherData?.sys.country}, {weatherData?.name}</h1>
+      {weatherData ? (
+        
+      <Cards description={description} icon={icon} temperature={temperature} pressure={pressure} wind={wind} rain={rain}/>
+    ) : (
+      <Loader />
+    )}
+      
       <ButtonGrade />
-    {/* <Loader /> */}
     {/* <Message /> */}
     </div>
   );
