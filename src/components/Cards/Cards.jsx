@@ -4,15 +4,15 @@ import windIcon from '../../assets/wind-icon.svg'
 import rainIcon from '../../assets/rain-icon.svg'
 import pressureIcon from '../../assets/pressure-icon.svg'
 const Cards = ({temperature, icon, description, pressure, wind, rain}) => {
-  const upperCase = () => description.toUpperCase()
-  upperCase()
+  const upperDescription = description.toUpperCase()
+  const roundedTemperature = Math.round(temperature);
   return (
     <div className="cards">
       <div className="principal__card">
-        {description && <h3>{description}</h3>}
+        {description && <h3>{upperDescription}</h3>}
         <div className='sub__card'>
-          <h2>{temperature}</h2>
-          <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="" />
+          <h2>{roundedTemperature}°C</h2>
+          <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="" className='principal__icon'/>
         </div>
       </div>
       <div className="temperatures__card">

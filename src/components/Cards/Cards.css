@@ -44,6 +44,11 @@
         width: 350px;
         height: auto;
     }
+    .principal__icon{
+        width:70px;
+        height: auto;
+        object-fit: contain;
+    }
     .temperatures__card{
         width: 350px;
         height: auto;
@@ -64,6 +69,11 @@
     .principal__card{
         width: 450px;
         height: auto;
+    }
+    .principal__icon{
+        width: 100px;
+        height: auto;
+        object-fit: contain;
     }
     .temperatures__card{
         width: 150px;
