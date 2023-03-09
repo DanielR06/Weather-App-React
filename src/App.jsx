@@ -59,8 +59,8 @@ const App = () => {
   const icon = weatherData?.weather?.[0]?.icon;
   const temperature = weatherData?.main?.temp;
   const pressure = weatherData?.pressure;
-  const wind = weatherData?.wind.deg;
-  const rain = weatherData?.rain; 
+  const wind = weatherData?.wind?.speed;
+  const rain = weatherData?.rain?.["1h"]; 
   return (
     
     <div className="flex flex-col justify-center items-center bg-zinc-800 w-full h-full gap-2" style={{
@@ -73,10 +73,11 @@ const App = () => {
       
       {weatherData ? (
       <div className='flex flex-col justify-center items-center gap-2'>
-      <ButtonMode />
+      {/* <ButtonMode /> */}
       <h1>{weatherData?.sys.country}, {weatherData?.name}</h1>
       <Cards description={description} icon={icon} temperature={temperature} unit={unit} pressure={pressure} wind={wind} rain={rain}/>
       <ButtonGrade  toggleUnit={toggleUnit}/>
+      <p className="font-semibold italic shadow-sm">By Daniel Rodriguez<br></br>Con ❤️ En academlo</p>
       </div>
     ) : (
       <Loader />
