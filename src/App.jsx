@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Loader from './components/Loader/Loader';
-import Message from './components/Message/Message';
 import ButtonMode from './components/ButtonMode/ButtonMode';
 import Cards from './components/Cards/Cards';
 import ButtonGrade from './components/ButtonGrade/ButtonGrade';
@@ -12,11 +11,6 @@ const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [unit, setUnit] = useState('C');
   const [grade, setGrade] = useState('metric')
-
-  // function toggleGrade() {
-  //   setGrade(prevGrade => (prevGrade === 'metric' ? 'imperial' : 'metric'));
-  //   getWeather();
-  //   };
 
   function toggleUnit() {
     if (unit === 'C') {
@@ -44,7 +38,7 @@ const App = () => {
     }
   }, []);
   
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d&units=${grade}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=faa1c50e8aeff346078b9f75acfbf63d&units=${grade}&lang=es`;
   
   const getWeather = async () => {
     try {
@@ -75,17 +69,18 @@ const App = () => {
     backgroundSize: 'cover',
     backgroundPosition:"center"
     }}>
+      
+      
+      {weatherData ? (
+      <div className='flex flex-col justify-center items-center gap-2'>
       <ButtonMode />
       <h1>{weatherData?.sys.country}, {weatherData?.name}</h1>
-      {weatherData ? (
-        
       <Cards description={description} icon={icon} temperature={temperature} unit={unit} pressure={pressure} wind={wind} rain={rain}/>
+      <ButtonGrade  toggleUnit={toggleUnit}/>
+      </div>
     ) : (
       <Loader />
     )}
-      <ButtonGrade  toggleUnit={toggleUnit}/>
-      
-    {/* <Message /> */}
     </div>
   );
 };
